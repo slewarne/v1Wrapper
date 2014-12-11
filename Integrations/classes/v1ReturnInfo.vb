@@ -12,6 +12,16 @@ Public Class v1ReturnInfo
         wasError = False
     End Sub
 
+    Public Function getSingleArray() As String
+
+        Dim tmpStr As String = returnString
+        'cut the first and last character off
+        tmpStr = Left(tmpStr, Len(tmpStr) - 1)
+        tmpStr = Right(tmpStr, Len(tmpStr) - 1)
+        Return tmpStr
+
+    End Function
+
     Public Function getUniqueJSON() As String
 
         Dim tmpList As New List(Of Object)

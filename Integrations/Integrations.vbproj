@@ -115,11 +115,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="EncodePWD.aspx" />
+    <Content Include="Setup.aspx" />
+    <Content Include="Test.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="classes\v1QueryBuilder.vb" />
     <Compile Include="EncodePWD.aspx.designer.vb">
       <DependentUpon>EncodePWD.aspx</DependentUpon>
     </Compile>
@@ -146,9 +149,23 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="v1OAuth.vb" />
-    <Compile Include="V1Query.vb" />
-    <Compile Include="v1ReturnInfo.vb" />
+    <Compile Include="Setup.aspx.designer.vb">
+      <DependentUpon>Setup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Setup.aspx.vb">
+      <DependentUpon>Setup.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Test.aspx.designer.vb">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test.aspx.vb">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="classes\v1OAuth.vb" />
+    <Compile Include="classes\V1Query.vb" />
+    <Compile Include="classes\v1ReturnInfo.vb" />
     <Compile Include="VersionOne.ashx.vb">
       <DependentUpon>VersionOne.ashx</DependentUpon>
     </Compile>
@@ -183,6 +200,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="config\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

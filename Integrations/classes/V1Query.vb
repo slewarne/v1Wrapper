@@ -23,6 +23,11 @@
         m_where = New Dictionary(Of String, String)
     End Sub
 
+    Public Sub New()
+        m_select = New List(Of String)
+        m_where = New Dictionary(Of String, String)
+    End Sub
+
     Public Sub addSelect(ByVal field As String)
         m_select.Add(field)
     End Sub

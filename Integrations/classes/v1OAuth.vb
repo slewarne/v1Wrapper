@@ -25,6 +25,10 @@ Public Class v1OAuth
 
     End Sub
 
+    Public Function getCreds() As IStorage
+        Return credentials
+    End Function
+
     Public Function runV1Query(ByVal cmd As String) As String
         client = New WebClient
         client.Encoding = Encoding.UTF8
