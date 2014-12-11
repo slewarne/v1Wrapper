@@ -1,4 +1,5 @@
 ﻿Imports System.Web.Script.Serialization
+Imports System.Xml
 
 Public Class v1QueryBuilder
 
@@ -12,6 +13,21 @@ Public Class v1QueryBuilder
         m_query2 = New V1Query()
         m_serializer = New JavaScriptSerializer
     End Sub
+
+    Public Function getQueryJSON(ByVal queryName As String) As String
+
+        Try
+            Dim doc As New XmlDocument
+            doc.Load(AppDomain.CurrentDomain.SetupInformation.ConfigurationFile)
+            Dim node As XmlElement = doc.SelectSingleNode("/configuration/" & queryName)
+            Return Replace(node.InnerText, vbCrLf, "")
+            
+        Catch ex As Exception
+            Return "Error - " & ex.Message
+        End Try
+       
+
+    End Function
 
     Public Function getProgramJSON() As String
         m_query.from = "ScopeLabel"

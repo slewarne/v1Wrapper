@@ -33,18 +33,23 @@ Public Class v1ReturnInfo
         Dim serializer As New JavaScriptSerializer
         returnArr = serializer.DeserializeObject(returnString)
 
-        For Each curObj In returnArr
-            For Each v1Obj In curObj
-                If Not tmpHash.ContainsKey(v1Obj("_oid")) Then
-                    tmpHash.Add(v1Obj("_oid"), "")
-                    tmpList.Add(v1Obj)
-                End If
+        If returnArr.length = 1 Then
+            'single array of results, assume they are unique and strip the extra [] for SBM to handle
+            Return getSingleArray()
+        Else
+            For Each curObj In returnArr
+                For Each v1Obj In curObj
+                    If Not tmpHash.ContainsKey(v1Obj("_oid")) Then
+                        tmpHash.Add(v1Obj("_oid"), "")
+                        tmpList.Add(v1Obj)
+                    End If
+                Next
             Next
-        Next
 
-        tmpHash.Clear()
-        tmpHash = Nothing
-        Return serializer.Serialize(tmpList)
+            tmpHash.Clear()
+            tmpHash = Nothing
+            Return serializer.Serialize(tmpList)
+        End If
 
     End Function
 
