@@ -3,8 +3,8 @@ Imports System.Collections.Generic
 Imports System.IO
 Imports System.Net
 Imports System.Text
-Imports Newtonsoft.Json
-Imports Newtonsoft.Json.Linq
+'Imports Newtonsoft.Json
+'Imports Newtonsoft.Json.Linq
 Imports OAuth2Client
 
 
@@ -34,7 +34,13 @@ Public Class v1OAuth
         Return credentials
     End Function
 
-    Public Function runV1Query(ByVal cmd As String) As String
+    Public Function runV1Query(ByVal cmd As String, _
+                               ByVal useProxy As Boolean, _
+                               ByVal proxyURL As String, _
+                               ByVal proxyPort As String, _
+                               ByVal proxyDomain As String, _
+                               ByVal proxyUID As String, _
+                               ByVal proxyPWD As String) As String
 
         client = New WebClient
         client.Encoding = Encoding.UTF8
@@ -43,8 +49,14 @@ Public Class v1OAuth
         client.Headers.Add("Authorization", "Bearer " & credentials.GetCredentials.AccessToken)
 
         Try
-            Dim returnStr As String = client.UploadString(m_uri.ToString, cmd)
-            Return returnStr
+
+            If useProxy Then
+                client.Proxy = New System.Net.WebProxy(proxyURL, CInt(proxyPort))
+                client.Proxy.Credentials = New NetworkCredential(proxyUID, proxyPWD, proxyDomain)
+            End If
+
+            Return client.UploadString(m_uri.ToString, cmd)
+
         Catch ex As WebException
             If ex.Status = WebExceptionStatus.ProtocolError Then
                 If Not CType(ex.Response, HttpWebResponse).StatusCode = HttpStatusCode.Unauthorized Then

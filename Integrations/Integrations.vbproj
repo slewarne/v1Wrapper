@@ -114,7 +114,6 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EncodePWD.aspx" />
     <Content Include="Setup.aspx" />
     <Content Include="Test.aspx" />
     <Content Include="Web.config">
@@ -123,13 +122,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes\v1QueryBuilder.vb" />
-    <Compile Include="EncodePWD.aspx.designer.vb">
-      <DependentUpon>EncodePWD.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="EncodePWD.aspx.vb">
-      <DependentUpon>EncodePWD.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

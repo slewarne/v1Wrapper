@@ -23,6 +23,7 @@ Public Class VersionOne
     Sub ProcessRequest(ByVal context As HttpContext) Implements IHttpHandler.ProcessRequest
 
         Try
+
             query = New v1QueryBuilder
             v1Query = New v1OAuth(context.Server.MapPath("~/config"))
             v1Return = New v1ReturnInfo()
@@ -49,9 +50,26 @@ Public Class VersionOne
                 End If
 
                 'got the query - run it.
-                v1Return.returnString = v1Query.runV1Query(queryJSON)
+                If ConfigurationManager.AppSettings("voUseProxy") = "1" Then
+                    v1Return.returnString = v1Query.runV1Query(queryJSON, True, _
+                                                               ConfigurationManager.AppSettings("voProxyURL"), _
+                                                               ConfigurationManager.AppSettings("voProxyPort"), _
+                                                               ConfigurationManager.AppSettings("voProxyDomain"), _
+                                                               ConfigurationManager.AppSettings("voProxyUID"), _
+                                                               ConfigurationManager.AppSettings("voProxyPWD"))
+                Else
+                    v1Return.returnString = v1Query.runV1Query(queryJSON, False, "", "", "", "", "")
+                End If
+
+
                 context.Response.ContentType = "application/json"
-                context.Response.Write(v1Return.getUniqueJSON)
+
+                If ConfigurationManager.AppSettings.Get("debugOut") = "1" Then
+                    context.Response.Write(v1Return.returnString)
+                Else
+                    context.Response.Write(v1Return.getUniqueJSON)
+                End If
+
             End If
         Catch webEx As WebException
             context.Response.ContentType = "text/plain"
