@@ -12,6 +12,7 @@ Public Class v1QueryBuilder
         m_query = New V1Query()
         m_query2 = New V1Query()
         m_serializer = New JavaScriptSerializer
+        m_serializer.MaxJsonLength = 2147483644
     End Sub
 
     Public Function getQueryJSON(ByVal queryName As String) As String

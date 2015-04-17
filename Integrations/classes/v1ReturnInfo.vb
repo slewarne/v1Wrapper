@@ -37,6 +37,7 @@ Public Class v1ReturnInfo
         Dim tmpDict As Dictionary(Of String, Object)
 
         Dim serializer As New JavaScriptSerializer
+        serializer.MaxJsonLength = 2147483644
         returnArr = serializer.DeserializeObject(returnString)
 
         For Each curObj In returnArr        ' this is the array of arrays that is returned
