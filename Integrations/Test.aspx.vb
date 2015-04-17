@@ -34,20 +34,9 @@
     Protected Sub btnRun_Click(sender As Object, e As EventArgs) Handles btnRun.Click
         'run the query
         Dim v1Query As New v1OAuth(Server.MapPath("~/config"))
-        Dim useProxy As Boolean = False
-
-        If chkProxy.Checked Then
-            useProxy = True
-        End If
 
         Try
-            txtResults.Text = v1Query.runV1Query(txtCMD.Text, _
-                                                 useProxy, _
-                                                 txtProxyURL.Text, 
-                                                 txtProxyPort.Text, _
-                                                 txtProxyDomain.Text, _
-                                                 txtProxyUser.Text, _
-                                                 txtProxyPwd.Text)
+            txtResults.Text = v1Query.runV1Query(txtCMD.Text)
         Catch ex As Exception
 
             txtResults.Text = ex.Message & vbCrLf & ex.ToString() & vbCrLf

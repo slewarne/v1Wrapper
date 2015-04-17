@@ -34,13 +34,7 @@ Public Class v1OAuth
         Return credentials
     End Function
 
-    Public Function runV1Query(ByVal cmd As String, _
-                               ByVal useProxy As Boolean, _
-                               ByVal proxyURL As String, _
-                               ByVal proxyPort As String, _
-                               ByVal proxyDomain As String, _
-                               ByVal proxyUID As String, _
-                               ByVal proxyPWD As String) As String
+    Public Function runV1Query(ByVal cmd As String) As String
 
         client = New WebClient
         client.Encoding = Encoding.UTF8
@@ -49,11 +43,6 @@ Public Class v1OAuth
         client.Headers.Add("Authorization", "Bearer " & credentials.GetCredentials.AccessToken)
 
         Try
-
-            If useProxy Then
-                client.Proxy = New System.Net.WebProxy(proxyURL, CInt(proxyPort))
-                client.Proxy.Credentials = New NetworkCredential(proxyUID, proxyPWD, proxyDomain)
-            End If
 
             Return client.UploadString(m_uri.ToString, cmd)
 

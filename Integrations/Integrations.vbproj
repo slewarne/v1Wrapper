@@ -116,12 +116,14 @@
   <ItemGroup>
     <Content Include="Setup.aspx" />
     <Content Include="Test.aspx" />
+    <Content Include="versionOne.asmx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes\v1QueryBuilder.vb" />
+    <Compile Include="classes\v1SOAPReturn.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -160,6 +162,10 @@
     <Compile Include="classes\v1ReturnInfo.vb" />
     <Compile Include="VersionOne.ashx.vb">
       <DependentUpon>VersionOne.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="versionOne.asmx.vb">
+      <DependentUpon>versionOne.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

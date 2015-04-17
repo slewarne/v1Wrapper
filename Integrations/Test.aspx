@@ -5,14 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <style type="text/css">
-       
-        .auto-style1 {
-            height: 23px;
-        }
-       
-    </style>
-</head>
+    </head>
 <body>
     <form id="form1" runat="server">
         <table>
@@ -52,61 +45,10 @@
             </tr>
             <tr>
                 <td>
-                    <asp:CheckBox ID="chkProxy" runat="server" Text="Use Proxy" />
-                </td>
+                    &nbsp;</td>
                 <td>&nbsp;</td>
                 <td>
                     &nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style1">
-                    <asp:Label ID="Label3" runat="server" Text="Proxy Address (URL):"></asp:Label>
-                </td>
-                <td class="auto-style1"></td>
-                <td class="auto-style1">
-                    <asp:Label ID="Label6" runat="server" Text="Proxy Domain:"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:TextBox ID="txtProxyURL" runat="server" Width="331px"></asp:TextBox>
-                </td>
-                <td>&nbsp;</td>
-                <td><asp:TextBox ID="txtProxyDomain" runat="server" Width="291px"></asp:TextBox></td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:Label ID="Label7" runat="server" Text="Proxy Port:"></asp:Label>
-                </td>
-                <td>&nbsp;</td>
-                <td>
-                    &nbsp;</td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:TextBox ID="txtProxyPort" runat="server" Width="295px"></asp:TextBox>
-                </td>
-                <td>&nbsp;</td>
-                <td>
-                    &nbsp;</td>
-            </tr>
-            <tr>
-                <td>
-                    <asp:Label ID="Label4" runat="server" Text="Proxy User Name:"></asp:Label>
-                </td>
-                <td>&nbsp;</td>
-                <td>
-                    <asp:Label ID="Label5" runat="server" Text="Proxy Password"></asp:Label>
-                </td>
-            </tr>
-             <tr>
-                <td>
-                    <asp:TextBox ID="txtProxyUser" runat="server" Width="295px"></asp:TextBox>
-                 </td>
-                <td>&nbsp;</td>
-                <td>
-                    <asp:TextBox ID="txtProxyPwd" runat="server" TextMode="Password" Width="295px"></asp:TextBox>
-                 </td>
             </tr>
             <tr>
                 <td>

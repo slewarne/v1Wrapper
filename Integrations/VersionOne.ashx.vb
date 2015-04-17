@@ -22,6 +22,8 @@ Public Class VersionOne
     'process the request
     Sub ProcessRequest(ByVal context As HttpContext) Implements IHttpHandler.ProcessRequest
 
+        Dim out As String = ""
+
         Try
 
             query = New v1QueryBuilder
@@ -50,24 +52,21 @@ Public Class VersionOne
                 End If
 
                 'got the query - run it.
-                If ConfigurationManager.AppSettings("voUseProxy") = "1" Then
-                    v1Return.returnString = v1Query.runV1Query(queryJSON, True, _
-                                                               ConfigurationManager.AppSettings("voProxyURL"), _
-                                                               ConfigurationManager.AppSettings("voProxyPort"), _
-                                                               ConfigurationManager.AppSettings("voProxyDomain"), _
-                                                               ConfigurationManager.AppSettings("voProxyUID"), _
-                                                               ConfigurationManager.AppSettings("voProxyPWD"))
-                Else
-                    v1Return.returnString = v1Query.runV1Query(queryJSON, False, "", "", "", "", "")
-                End If
-
-
-                context.Response.ContentType = "application/json"
+                v1Return.returnString = v1Query.runV1Query(queryJSON)
+                context.Response.ContentType = "application/json;charset=UTF-8"
 
                 If ConfigurationManager.AppSettings.Get("debugOut") = "1" Then
-                    context.Response.Write(v1Return.returnString)
+                    context.Response.Write(Trim(v1Return.returnString))
                 Else
-                    context.Response.Write(v1Return.getUniqueJSON)
+                    If ConfigurationManager.AppSettings.AllKeys.Contains(context.Request.Params("action") & "_unqfieldlist") Then
+                        'we are returning unique fields
+                        out = v1Return.getUniqueFields(ConfigurationManager.AppSettings.Get(context.Request.Params("action") & "_fields"))
+                        context.Response.Write(Trim(Replace(Trim(out), vbCrLf, "")))
+                    Else
+                        out = v1Return.getUniqueJSON
+                        context.Response.Write(Trim(Replace(Trim(out), vbCrLf, "")))
+                    End If
+
                 End If
 
             End If
